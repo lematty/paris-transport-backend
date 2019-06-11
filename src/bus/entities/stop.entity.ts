@@ -3,7 +3,7 @@ import { Column, Entity } from 'typeorm';
 @Entity('stops', {schema: 'public' } )
 export class Stop {
 
-  @Column({ nullable: true, length: 255, name: 'stop_id' })
+  @Column({ primary: true, nullable: true, length: 255, name: 'stop_id' })
   stopId: string | null;
 
   @Column({ nullable: true, length: 255, name: 'stop_code' })
