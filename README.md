@@ -47,6 +47,22 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Docker Postgres Database
+
+To start the database container, just simply run the following commands:
+```
+cd csvdatabase/
+docker-compose up
+```
+
+If you need to make changes to the CSVs that created this database, you can recreate the files:
+```
+cd csvdatabase/
+./createdb.bash
+docker-compose down -v
+docker-compose up
+```
+
 ## Test
 
 ```bash

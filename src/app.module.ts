@@ -4,6 +4,7 @@ import { BusModule } from './bus/bus.module';
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot(),
     BusModule,
   ],
   controllers: [],
