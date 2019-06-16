@@ -8,8 +8,8 @@ export class BusService {
 
   constructor(
     @InjectRepository(Agency) private agencyRepository: Repository<Agency>,
-    @InjectRepository(Calendar) private calendarRepository: Repository<Calendar>,
     @InjectRepository(CalendarDate) private calendarDateRepository: Repository<CalendarDate>,
+    @InjectRepository(Calendar) private calendarRepository: Repository<Calendar>,
     @InjectRepository(Route) private routeRepository: Repository<Route>,
     @InjectRepository(StopTime) private stopTimeRepository: Repository<StopTime>,
     @InjectRepository(Stop) private stopRepository: Repository<Stop>,
@@ -21,12 +21,12 @@ export class BusService {
     return this.agencyRepository.find();
   }
 
-  getAllCalendars(): Promise<Calendar[]> {
-    return this.calendarRepository.find({ take: 20 });
-  }
-
   getAllCalendarDates(): Promise<CalendarDate[]> {
     return this.calendarDateRepository.find({ take: 20 });
+  }
+
+  getAllCalendars(): Promise<Calendar[]> {
+    return this.calendarRepository.find({ take: 20 });
   }
 
   getAllRoutes(): Promise<Route[]> {

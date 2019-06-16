@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BusModule } from './bus/bus.module';
+import { Connection } from 'typeorm';
 
 @Module({
   imports: [
@@ -10,4 +11,6 @@ import { BusModule } from './bus/bus.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private readonly connection: Connection) {}
+}
