@@ -45,6 +45,9 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+# Swagger API documentation
+http://localhost:3000/api
 ```
 
 ## Docker Postgres Database
