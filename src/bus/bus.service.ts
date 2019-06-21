@@ -17,19 +17,19 @@ export class BusService {
     @InjectRepository(Trip) private tripRepository: Repository<Trip>,
     ) {}
 
-  getAllAgencies(): Promise<Agency[]> {
+  async getAllAgencies(): Promise<Agency[]> {
     return this.agencyRepository.find();
   }
 
-  getAllCalendarDates(): Promise<CalendarDate[]> {
+  async getAllCalendarDates(): Promise<CalendarDate[]> {
     return this.calendarDateRepository.find({ take: 20 });
   }
 
-  getAllCalendars(): Promise<Calendar[]> {
+  async getAllCalendars(): Promise<Calendar[]> {
     return this.calendarRepository.find({ take: 20 });
   }
 
-  getAllRoutes(): Promise<Route[]> {
+  async getAllRoutes(): Promise<Route[]> {
     return this.routeRepository.find({ take: 20 });
   }
 
@@ -37,15 +37,27 @@ export class BusService {
     return this.stopTimeRepository.find({ take: 20 });
   }
 
-  getAllStops(): Promise<Stop[]> {
+  async getAllStops(): Promise<Stop[]> {
     return this.stopRepository.find({ take: 20 });
   }
 
-  getAllTransfers(): Promise<Transfer[]> {
+  async getAllTransfers(): Promise<Transfer[]> {
     return this.transferRepository.find({ take: 20 });
   }
 
-  getAllTrips(): Promise<Trip[]> {
+  async getAllTrips(): Promise<Trip[]> {
     return this.tripRepository.find({ take: 20 });
+  }
+
+  async getStopTimesById(tripId: string): Promise<any> {
+    const stopTimes = await this.stopTimeRepository.find({ tripId }) as StopTime[];
+    const stations = await Promise.all(stopTimes.map(async (stopTime: StopTime) => {
+      const station = await this.stopRepository.findOne(stopTime.stopId) as Stop;
+      return station;
+    }));
+    return {
+      tripId,
+      stations,
+    };
   }
 }

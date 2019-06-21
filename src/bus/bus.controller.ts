@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { BusService } from './bus.service';
 import { Agency, Calendar, CalendarDate, Route, StopTime, Stop, Transfer, Trip } from './entities';
 import { ApiUseTags } from '@nestjs/swagger';
@@ -47,5 +47,10 @@ export class BusController {
   @Get('trips')
   async getAllTrips(): Promise<Trip[]> {
     return this.bus.getAllTrips();
+  }
+
+  @Get('trips/:id')
+  async getStopTimesByTripId(@Param('id') tripId: string): Promise<any> {
+    return await this.bus.getStopTimesById(tripId);
   }
 }

@@ -10,6 +10,7 @@ import { Connection } from 'typeorm';
   ],
   controllers: [],
   providers: [],
+  exports: [BusModule],
 })
 export class AppModule {
   constructor(private readonly connection: Connection) {}
