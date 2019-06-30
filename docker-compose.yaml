@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app:
+    container_name: app
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: postgres
+    restart: always
+    image: postgres:latest
+    volumes:
+      - ./csvdatabase/dbinit/:/docker-entrypoint-initdb.d/
+      - data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=pt
+      - POSTGRES_PASSWORD=pt
+      - POSTGRES_DB=paristransport
+volumes:
+  data:

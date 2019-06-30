@@ -1,12 +1,12 @@
 {
   "type": "postgres",
-  "host": "localhost",
+  "host": "postgres",
   "port": 5432,
   "username": "pt",
   "password": "pt",
   "database": "paristransport",
   "schema": "public",
   "synchronize": false,
-  "entities": ["dist/**/*.entity.js"],
+  "entities": ["src/**/**.entity{.ts,.js}"],
   "logging": true
 }

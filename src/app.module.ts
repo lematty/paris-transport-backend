@@ -5,7 +5,7 @@ import { Connection } from 'typeorm';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRoot(), // takes database config from ormconfig.json
     BusModule,
   ],
   controllers: [],

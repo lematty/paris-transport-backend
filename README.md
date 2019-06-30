@@ -21,50 +21,69 @@
   <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
   <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
-
+Backend for paris transportion lines and stations.
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+# Installation
 
+Install dependencies:
 ```bash
-$ npm install
+npm install
 ```
 
-## Running the app
+You will also need to install [Docker](https://www.docker.com/).
 
+# Running the app
+## Development mode:
+To start the database:
 ```bash
+docker-compose up postgres
+```
 
+To start the application, run in another terminal:
+```bash
 # watch mode
-$ npm run start:dev
+npm run start:dev
+```
 
-# production mode
-$ npm run start:prod
+## Production mode:
 
-# Swagger API documentation
+One command to start everything (database and app):
+```
+docker-compose up
+```
+
+## Connect to the API on port 3000:
+```bash
+# For Swagger API documentation
 http://localhost:3000/api
 ```
 
-## Docker Postgres Database
-
-To start the database container, just simply run the following commands:
+## Docker commands:
+To stop docker containers:
 ```
-cd csvdatabase/
-docker-compose up
+docker-compose down
+```
+
+To rebuild docker containers:
+```bash
+# development mode
+docker-compose up --build postgres
+
+# production mode
+docker-compose up --build
 ```
 
 If you need to make changes to the CSVs that created this database, you can recreate the files:
 ```
-cd csvdatabase/
-./createdb.bash
+./csvdatabase/createdb.bash
 docker-compose down -v
-docker-compose up
+docker-compose up --build postgres
 ```
 
-## Test
+# Test
 
 ```bash
 # unit tests
@@ -77,15 +96,10 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
