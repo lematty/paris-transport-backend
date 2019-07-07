@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { BusService } from './bus.service';
-import { Agency, Calendar, CalendarDate, Route, StopTime, Stop, Transfer, Trip } from './entities';
+import { Calendar, CalendarDates, Routes, StopTimes, Stops, Transfers, Trips } from './entities';
 import { ApiUseTags } from '@nestjs/swagger';
 
 @ApiUseTags('bus')
@@ -9,48 +9,38 @@ export class BusController {
 
   constructor(private bus: BusService) {}
 
-  @Get('agencies')
-  async getAllAgencies(): Promise<Agency[]> {
-    return this.bus.getAllAgencies();
-  }
-
   @Get('calendars')
   async getAllCalendars(): Promise<Calendar[]> {
     return this.bus.getAllCalendars();
   }
 
   @Get('calendar-dates')
-  async getAllCalendarDates(): Promise<CalendarDate[]> {
+  async getAllCalendarDates(): Promise<CalendarDates[]> {
     return this.bus.getAllCalendarDates();
   }
 
   @Get('routes')
-  async getAllRoutes(): Promise<Route[]> {
+  async getAllRoutes(): Promise<Routes[]> {
     return this.bus.getAllRoutes();
   }
 
   @Get('stop-times')
-  async getAllStopTimes(): Promise<StopTime[]> {
+  async getAllStopTimes(): Promise<StopTimes[]> {
     return this.bus.getAllStopTimes();
   }
 
   @Get('stops')
-  async getAllStops(): Promise<Stop[]> {
+  async getAllStops(): Promise<Stops[]> {
     return this.bus.getAllStops();
   }
 
   @Get('transfer')
-  async getAllTransfers(): Promise<Transfer[]> {
+  async getAllTransfers(): Promise<Transfers[]> {
     return this.bus.getAllTransfers();
   }
 
   @Get('trips')
-  async getAllTrips(): Promise<Trip[]> {
+  async getAllTrips(): Promise<Trips[]> {
     return this.bus.getAllTrips();
-  }
-
-  @Get('trips/:id')
-  async getStopTimesByTripId(@Param('id') tripId: string): Promise<any> {
-    return await this.bus.getStopTimesById(tripId);
   }
 }

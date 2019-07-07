@@ -1,27 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Agency, Calendar, CalendarDate, Route, StopTime, Stop, Transfer, Trip } from './entities';
+import { Calendar, CalendarDates, Routes, StopTimes, Stops, Transfers, Trips } from './entities';
 
 @Injectable()
 export class BusService {
 
   constructor(
-    @InjectRepository(Agency) private agencyRepository: Repository<Agency>,
-    @InjectRepository(CalendarDate) private calendarDateRepository: Repository<CalendarDate>,
+    @InjectRepository(CalendarDates) private calendarDateRepository: Repository<CalendarDates>,
     @InjectRepository(Calendar) private calendarRepository: Repository<Calendar>,
-    @InjectRepository(Route) private routeRepository: Repository<Route>,
-    @InjectRepository(StopTime) private stopTimeRepository: Repository<StopTime>,
-    @InjectRepository(Stop) private stopRepository: Repository<Stop>,
-    @InjectRepository(Transfer) private transferRepository: Repository<Transfer>,
-    @InjectRepository(Trip) private tripRepository: Repository<Trip>,
+    @InjectRepository(Routes) private routeRepository: Repository<Routes>,
+    @InjectRepository(StopTimes) private stopTimeRepository: Repository<StopTimes>,
+    @InjectRepository(Stops) private stopRepository: Repository<Stops>,
+    @InjectRepository(Transfers) private transferRepository: Repository<Transfers>,
+    @InjectRepository(Trips) private tripRepository: Repository<Trips>,
     ) {}
 
-  async getAllAgencies(): Promise<Agency[]> {
-    return this.agencyRepository.find();
-  }
-
-  async getAllCalendarDates(): Promise<CalendarDate[]> {
+  async getAllCalendarDates(): Promise<CalendarDates[]> {
     return this.calendarDateRepository.find({ take: 20 });
   }
 
@@ -29,35 +24,23 @@ export class BusService {
     return this.calendarRepository.find({ take: 20 });
   }
 
-  async getAllRoutes(): Promise<Route[]> {
+  async getAllRoutes(): Promise<Routes[]> {
     return this.routeRepository.find({ take: 20 });
   }
 
-  getAllStopTimes(): Promise<StopTime[]> {
+  getAllStopTimes(): Promise<StopTimes[]> {
     return this.stopTimeRepository.find({ take: 20 });
   }
 
-  async getAllStops(): Promise<Stop[]> {
+  async getAllStops(): Promise<Stops[]> {
     return this.stopRepository.find({ take: 20 });
   }
 
-  async getAllTransfers(): Promise<Transfer[]> {
+  async getAllTransfers(): Promise<Transfers[]> {
     return this.transferRepository.find({ take: 20 });
   }
 
-  async getAllTrips(): Promise<Trip[]> {
+  async getAllTrips(): Promise<Trips[]> {
     return this.tripRepository.find({ take: 20 });
-  }
-
-  async getStopTimesById(tripId: string): Promise<any> {
-    const stopTimes = await this.stopTimeRepository.find({ tripId }) as StopTime[];
-    const stations = await Promise.all(stopTimes.map(async (stopTime: StopTime) => {
-      const station = await this.stopRepository.findOne(stopTime.stopId) as Stop;
-      return station;
-    }));
-    return {
-      tripId,
-      stations,
-    };
   }
 }

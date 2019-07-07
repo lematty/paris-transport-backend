@@ -36,11 +36,18 @@ npm install
 You will also need to install [Docker](https://www.docker.com/).
 
 # Initializing the database
-```
+```bash
 cd csvdatabase
 rm -rf dbinit
+
+# create schema
 ./createdb.bash schema
-./createdb # this may take a while
+
+# build database (this may take a while)
+./createdb.bash
+
+# rebuild entities
+typeorm-model-generator -h localhost -d paristransport -u pt -x pt -e postgres -o ../src/bus/ --cf pascal --ce pascal --cp camel
 ```
 
 # Running the app
