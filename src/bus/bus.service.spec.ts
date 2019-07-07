@@ -9,11 +9,7 @@ describe('BusService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         {
-          provide: 'AgencyRepository',
-          useClass: Repository,
-        },
-        {
-          provide: 'CalendarDateRepository',
+          provide: 'CalendarDatesRepository',
           useClass: Repository,
         },
         {
@@ -21,23 +17,23 @@ describe('BusService', () => {
           useClass: Repository,
         },
         {
-          provide: 'RouteRepository',
+          provide: 'RoutesRepository',
           useClass: Repository,
         },
         {
-          provide: 'StopTimeRepository',
+          provide: 'StopTimesRepository',
           useClass: Repository,
         },
         {
-          provide: 'StopRepository',
+          provide: 'StopsRepository',
           useClass: Repository,
         },
         {
-          provide: 'TransferRepository',
+          provide: 'TransfersRepository',
           useClass: Repository,
         },
         {
-          provide: 'TripRepository',
+          provide: 'TripsRepository',
           useClass: Repository,
         },
         BusService,

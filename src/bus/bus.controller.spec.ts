@@ -15,7 +15,7 @@ describe('Bus Controller', () => {
           useClass: Repository,
         },
         {
-          provide: 'CalendarDateRepository',
+          provide: 'CalendarDatesRepository',
           useClass: Repository,
         },
         {
@@ -23,23 +23,23 @@ describe('Bus Controller', () => {
           useClass: Repository,
         },
         {
-          provide: 'RouteRepository',
+          provide: 'RoutesRepository',
           useClass: Repository,
         },
         {
-          provide: 'StopTimeRepository',
+          provide: 'StopTimesRepository',
           useClass: Repository,
         },
         {
-          provide: 'StopRepository',
+          provide: 'StopsRepository',
           useClass: Repository,
         },
         {
-          provide: 'TransferRepository',
+          provide: 'TransfersRepository',
           useClass: Repository,
         },
         {
-          provide: 'TripRepository',
+          provide: 'TripsRepository',
           useClass: Repository,
         },
       ],

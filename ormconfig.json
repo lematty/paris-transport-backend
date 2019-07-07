@@ -7,6 +7,6 @@
   "database": "paristransport",
   "schema": "public",
   "synchronize": false,
-  "entities": ["dist/**/*.entity.js"],
+  "entities": ["dist/**/entities/*.js"],
   "logging": true
 }

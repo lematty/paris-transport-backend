@@ -7,17 +7,17 @@ import { Calendar, CalendarDates, Routes, StopTimes, Stops, Transfers, Trips } f
 export class BusService {
 
   constructor(
-    @InjectRepository(CalendarDates) private calendarDateRepository: Repository<CalendarDates>,
+    @InjectRepository(CalendarDates) private calendarDatesRepository: Repository<CalendarDates>,
     @InjectRepository(Calendar) private calendarRepository: Repository<Calendar>,
-    @InjectRepository(Routes) private routeRepository: Repository<Routes>,
-    @InjectRepository(StopTimes) private stopTimeRepository: Repository<StopTimes>,
-    @InjectRepository(Stops) private stopRepository: Repository<Stops>,
-    @InjectRepository(Transfers) private transferRepository: Repository<Transfers>,
-    @InjectRepository(Trips) private tripRepository: Repository<Trips>,
+    @InjectRepository(Routes) private routesRepository: Repository<Routes>,
+    @InjectRepository(StopTimes) private stopTimesRepository: Repository<StopTimes>,
+    @InjectRepository(Stops) private stopsRepository: Repository<Stops>,
+    @InjectRepository(Transfers) private transfersRepository: Repository<Transfers>,
+    @InjectRepository(Trips) private tripsRepository: Repository<Trips>,
     ) {}
 
   async getAllCalendarDates(): Promise<CalendarDates[]> {
-    return this.calendarDateRepository.find({ take: 20 });
+    return this.calendarDatesRepository.find({ take: 20 });
   }
 
   async getAllCalendars(): Promise<Calendar[]> {
@@ -25,22 +25,22 @@ export class BusService {
   }
 
   async getAllRoutes(): Promise<Routes[]> {
-    return this.routeRepository.find({ take: 20 });
+    return this.routesRepository.find({ take: 20 });
   }
 
   getAllStopTimes(): Promise<StopTimes[]> {
-    return this.stopTimeRepository.find({ take: 20 });
+    return this.stopTimesRepository.find({ take: 20 });
   }
 
   async getAllStops(): Promise<Stops[]> {
-    return this.stopRepository.find({ take: 20 });
+    return this.stopsRepository.find({ take: 20 });
   }
 
   async getAllTransfers(): Promise<Transfers[]> {
-    return this.transferRepository.find({ take: 20 });
+    return this.transfersRepository.find({ take: 20 });
   }
 
   async getAllTrips(): Promise<Trips[]> {
-    return this.tripRepository.find({ take: 20 });
+    return this.tripsRepository.find({ take: 20 });
   }
 }
