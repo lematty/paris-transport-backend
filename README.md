@@ -35,6 +35,14 @@ npm install
 
 You will also need to install [Docker](https://www.docker.com/).
 
+# Initializing the database
+```
+cd csvdatabase
+rm -rf dbinit
+./createdb.bash schema
+./createdb # this may take a while
+```
+
 # Running the app
 ## Development mode:
 To start the database:
