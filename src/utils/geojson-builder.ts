@@ -1,19 +1,21 @@
-import { FeatureCollection, Feature, LineString, Position } from 'geojson';
-import { Stops } from 'src/bus/entities';
+import { FeatureCollection, Feature, LineString, Position, Point } from 'geojson';
+import { Stops } from '../bus/entities';
 
 export class GeojsonBuilder {
-  async formatGeoJson(data: Stops[]): Promise<FeatureCollection> {
+  async formatGeoJson(data: Stops[], type: string): Promise<FeatureCollection> {
     return {
       type: 'FeatureCollection',
-      features: await this.buildFeatures(data),
+      features: type === 'stations'
+        ? await this.buildStationFeatures(data)
+        : await this.buildLineFeatures(data),
     };
   }
 
-  buildFeatures(data: Stops[]): Feature[] {
-    let properties;
+  buildLineFeatures(data: Stops[]): Feature[] {
+    let properties: any;
     const coordinates = data.map((station: Stops) => {
-      const { stopLat, stopLon } = station;
-      properties = station;
+      const { stopLat, stopLon, ...metadata } = station;
+      properties = metadata;
       return [+stopLon, +stopLat];
     });
     const features: Feature[] = [{
@@ -24,6 +26,22 @@ export class GeojsonBuilder {
       } as LineString,
       properties,
     }] as Feature[];
+    return features;
+  }
+
+  buildStationFeatures(data: Stops[]): Feature[] {
+    const features: Feature[] = data.map((station: Stops) => {
+      const { stopLat, stopLon, ...metadata } = station;
+      const feature: Feature = {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [+station.stopLon, +station.stopLat],
+        },
+        properties: metadata,
+      };
+      return feature;
+    });
     return features;
   }
 }

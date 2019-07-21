@@ -8,5 +8,5 @@
   "schema": "public",
   "synchronize": false,
   "entities": ["dist/**/entities/*.js"],
-  "logging": true
+  "logging": false
 }

@@ -3,6 +3,7 @@ import { BusController } from './bus.controller';
 import { BusService } from './bus.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Calendar, CalendarDates, Routes, Stops, StopTimes, Transfers, Trips } from './entities';
+import { GeojsonBuilder } from '../utils/geojson-builder';
 
 @Module({
   imports: [TypeOrmModule.forFeature([
@@ -15,6 +16,6 @@ import { Calendar, CalendarDates, Routes, Stops, StopTimes, Transfers, Trips } f
     Trips,
   ])],
   controllers: [BusController],
-  providers: [BusService],
+  providers: [BusService, GeojsonBuilder],
 })
 export class BusModule {}

@@ -2,6 +2,7 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { BusService } from './bus.service';
 import { Calendar, CalendarDates, Routes, StopTimes, Stops, Transfers, Trips } from './entities';
 import { ApiUseTags } from '@nestjs/swagger';
+import { FeatureCollection } from 'geojson';
 
 @ApiUseTags('bus')
 @Controller('bus')
@@ -42,5 +43,10 @@ export class BusController {
   @Get('trips')
   async getAllTrips(): Promise<Trips[]> {
     return this.bus.getAllTrips();
+  }
+
+  @Get('route/:id')
+  async getStationsByRouteId(@Param('id') routeId): Promise<FeatureCollection> {
+    return this.bus.getStationsByRouteId(routeId);
   }
 }
