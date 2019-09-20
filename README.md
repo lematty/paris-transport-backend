@@ -28,12 +28,26 @@ Backend for paris transportion lines and stations.
 
 # Installation
 
-Install dependencies:
+Required installations:
+You will need [Node.js](https://nodejs.org/en/download/), [Python 3.7](https://www.python.org/downloads/) and [Docker](https://www.docker.com/) installed.
+
+Check if installed with:
+
 ```bash
-npm install
+# Node.js
+node --version
+
+# Python 3.7
+python3.7 --version
+
+# Docker
+docker --version
 ```
 
-You will also need to install [Docker](https://www.docker.com/).
+```bash
+# install dependencies
+npm install
+```
 
 # Initializing the database
 ```bash
@@ -45,15 +59,13 @@ rm -rf dbinit
 
 # build database (this may take a while)
 ./createdb.bash
-
-# rebuild entities
-typeorm-model-generator -h localhost -d paristransport -u pt -x pt -e postgres -o ../src/bus/ --cf pascal --ce pascal --cp camel
 ```
 
 # Running the app
 ## Development mode:
 To start the database:
 ```bash
+# launch the stack (this also may take a while)
 docker-compose up postgres
 ```
 
@@ -62,6 +74,15 @@ To start the application, run in another terminal:
 # watch mode
 npm run start:dev
 ```
+
+## Regenerate models (if needed)
+```bash
+#install typeorm-model-generator
+npm i -g typeorm-model-generator
+
+# rebuild entities
+typeorm-model-generator -h localhost -d paristransport -u pt -x pt -e postgres -o ../src/bus/ --cf pascal --ce pascal --cp camel
+````
 
 ## Production mode:
 
