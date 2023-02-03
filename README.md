@@ -23,22 +23,18 @@
 </p>
 
 ## Description
-Backend for paris transportion lines and stations.
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Backend for paris transportion lines and stations. The database used for this repository is based off of the [paris-transport-database](https://github.com/lematty/paris-transport-database) repository. The postgres database from that repository must be running before launching this application.
 
 # Installation
 
 Required installations:
-You will need [Node.js](https://nodejs.org/en/download/), [Python 3.7](https://www.python.org/downloads/) and [Docker](https://www.docker.com/) installed.
+You will need [Node.js](https://nodejs.org/en/download/) and [Docker](https://www.docker.com/) installed.
 
 Check if installed with:
 
 ```bash
 # Node.js
 node --version
-
-# Python 3.7
-python3.7 --version
 
 # Docker
 docker --version
@@ -49,27 +45,10 @@ docker --version
 npm install
 ```
 
-# Initializing the database
-```bash
-cd csvdatabase
-rm -rf dbinit
-
-# create schema
-./createdb.bash schema
-
-# build database (this may take a while)
-./createdb.bash
-```
-
 # Running the app
 ## Development mode:
-To start the database:
-```bash
-# launch the stack (this also may take a while)
-docker-compose up postgres
-```
 
-To start the application, run in another terminal:
+To start the application:
 ```bash
 # watch mode
 npm run start:dev
@@ -86,7 +65,7 @@ typeorm-model-generator -h localhost -d paristransport -u pt -x pt -e postgres -
 
 ## Production mode:
 
-One command to start everything (database and app):
+One command to start the app:
 ```
 docker-compose up
 ```
@@ -105,18 +84,7 @@ docker-compose down
 
 To rebuild docker containers:
 ```bash
-# development mode
-docker-compose up --build postgres
-
-# production mode
-docker-compose up --build
-```
-
-If you need to make changes to the CSVs that created this database, you can recreate the files:
-```
-./csvdatabase/createdb.bash
-docker-compose down -v
-docker-compose up --build postgres
+docker-compose up
 ```
 
 # Test
