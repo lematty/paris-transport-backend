@@ -1,5 +1,5 @@
 import { FeatureCollection, Feature, LineString, Position, Point } from 'geojson';
-import { Stops } from '../bus/entities';
+import { Stops } from '../entities';
 
 export class GeojsonBuilder {
   async formatGeoJson(data: Stops[], type: string): Promise<FeatureCollection> {

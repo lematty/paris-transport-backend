@@ -1,7 +1,7 @@
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { BusModule } from './../src/bus/bus.module';
-import { BusService } from './../src/bus/bus.service';
+import { BusService } from '../src/services/transport.service';
 import { INestApplication } from '@nestjs/common';
 
 describe('Buses', () => {

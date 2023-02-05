@@ -1,11 +1,23 @@
 version: '3'
 services:
-  app:
-    container_name: app
+  postgres-db:
+    image: postgres
     restart: always
-    build: .
     ports:
-      - "3000:3000"
+      - 5432:5432
+    environment:
+      POSTGRES_USER: paris-transport-username
+      POSTGRES_PASSWORD: paris-transport-password
+      POSTGRES_DB: paristransport
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # app:
+  #   container_name: app
+  #   restart: always
+  #   build: .
+  #   ports:
+  #     - "3000:3000"
 
 volumes:
-  data:
+  pgdata:
